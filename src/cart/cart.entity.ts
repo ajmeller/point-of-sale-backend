@@ -6,8 +6,8 @@ export class Cart {
   id: number;
 
   @Column('int')
-  albumId: number;
+  quantity: number;
 
   @Column('int')
-  quantity: number;
+  albumid: number;
 }

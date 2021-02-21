@@ -6,13 +6,13 @@ export class Albums {
   id: number;
 
   @Column('text')
-  artistName: string;
+  artistname: string;
 
   @Column('text')
-  albumName: string;
+  albumname: string;
 
   @Column('text')
-  albumArtSource: string;
+  albumartsource: string;
 
   @Column('real')
   price: number;
