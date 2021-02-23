@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cart } from './cart/cart.entity';
-import { Albums } from './albums/albums.entity';
-import { AlbumsModule } from './albums/albums.module';
+import { Album } from './album/album.entity';
+import { AlbumModule } from './album/album.module';
 import { CartModule } from './cart/cart.module';
 
 @Module({
@@ -14,10 +14,11 @@ import { CartModule } from './cart/cart.module';
       username: 'postgres',
       password: 'password',
       database: 'album_shop',
-      entities: [Albums, Cart],
+      entities: [Album, Cart],
+      migrations: ['./migrations/*.js'],
       synchronize: false,
     }),
-    AlbumsModule,
+    AlbumModule,
     CartModule,
   ],
 })

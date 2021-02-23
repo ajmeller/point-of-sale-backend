@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Album } from 'src/album/album.entity';
 
 @Entity()
 export class Cart {
@@ -8,6 +15,7 @@ export class Cart {
   @Column('int')
   quantity: number;
 
-  @Column('int')
-  albumid: number;
+  @OneToOne(() => Album)
+  @JoinColumn()
+  album: Album;
 }

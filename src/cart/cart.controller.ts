@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CartService } from './cart.service';
-import { Cart } from './cart.entity';
 import { CartItem } from './cart-item.interface';
 
 @Controller('cart')
@@ -8,12 +7,12 @@ export class CartController {
   constructor(private readonly cartService: CartService) {}
 
   @Get()
-  findAll(): Promise<Cart[]> {
+  findAll(): Promise<any> {
     return this.cartService.findAll();
   }
 
   @Post('add')
-  async create(@Body() cartItem: CartItem): Promise<Cart[]> {
+  async create(@Body() cartItem: CartItem): Promise<any> {
     return this.cartService.create(cartItem);
   }
 
