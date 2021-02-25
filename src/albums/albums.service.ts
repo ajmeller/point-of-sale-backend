@@ -1,24 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Album } from './album.entity';
+import { Albums } from '../albums/albums.entity';
 
 @Injectable()
-export class AlbumService {
+export class AlbumsService {
   constructor(
-    @InjectRepository(Album)
-    private readonly AlbumRepository: Repository<Album>,
+    @InjectRepository(Albums)
+    private readonly AlbumRepository: Repository<Albums>,
   ) {}
 
-  async findAll(): Promise<Album[]> {
+  async findAll(): Promise<Albums[]> {
     return this.AlbumRepository.find();
   }
 
-  async findOne(id: number): Promise<Album> {
+  async findOne(id: number): Promise<Albums> {
     return this.AlbumRepository.findOne(id);
   }
 
-  async query(text: string): Promise<Album[]> {
+  async query(text: string): Promise<Albums[]> {
     return await this.AlbumRepository.find({ albumname: text });
   }
 }

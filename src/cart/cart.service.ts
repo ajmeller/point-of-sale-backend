@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CartItem } from './cart-item.interface';
+import { CartItem } from './cart-item.dto';
 import { Cart } from './cart.entity';
 
 @Injectable()
@@ -12,21 +12,19 @@ export class CartService {
   ) {}
 
   async findAll(): Promise<any> {
-    const albumCart = await this.cartRepository.find({ relations: ['album'] });
-    /*     const albumCart = await this.cartRepository
-      .createQueryBuilder('c')
-      .leftJoinAndSelect('c.album', 'album')
-      .getMany(); */
+    const query = await this.cartRepository.query(`select *
+    from cart
+    join albums on cart.albumid = albums.albumid`);
 
-    return albumCart;
+    return query;
   }
 
-  async create(cartItem: CartItem): Promise<any> {
+  async create(cartItem: CartItem): Promise<CartItem> {
     return await this.cartRepository.save(cartItem);
   }
 
-  async update(cartItem: CartItem): Promise<any> {
-    return await this.cartRepository.update(cartItem.id, cartItem);
+  async update(id: number, cartItem: CartItem): Promise<any> {
+    return await this.cartRepository.update(id, cartItem);
   }
 
   async delete(id: number): Promise<any> {

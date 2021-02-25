@@ -1,9 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Album {
+export class Albums {
   @PrimaryGeneratedColumn()
-  id: number;
+  albumid: number;
 
   @Column('text')
   artistname: string;

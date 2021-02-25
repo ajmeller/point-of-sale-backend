@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CartService } from './cart.service';
-import { CartItem } from './cart-item.interface';
+import { CartItem } from './cart-item.dto';
 
 @Controller('cart')
 export class CartController {
@@ -17,9 +17,9 @@ export class CartController {
   }
 
   @Post('update/:id')
-  async update(@Body() cartItem: CartItem, @Param('id') id): Promise<any> {
-    cartItem.id = Number(id);
-    return this.cartService.update(cartItem);
+  async update(@Body() cartItem: CartItem, @Param('id') cartid): Promise<any> {
+    //cartItem.cartid = Number(cartid);
+    return this.cartService.update(cartid, cartItem);
   }
 
   @Post('delete/:id')
